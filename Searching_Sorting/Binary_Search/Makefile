@@ -1,8 +1,11 @@
-all: 
-	gcc -g -Wall binary.o main.o -o teste
+OBJS = binary.o main.o
 
-*.o : 
-	gcc -c $<
+
+all: $(OBJS)
+	gcc -g -Wall $^ -o teste
+
+%.o : $(OBJS:.o=.c)	
+	gcc -c $^
 
 clean:
 	rm -rf *.o
